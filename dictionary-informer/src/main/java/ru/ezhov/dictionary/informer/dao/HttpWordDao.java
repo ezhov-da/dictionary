@@ -16,7 +16,8 @@ public class HttpWordDao implements WordDao {
 
     @Override
     public String getRandomWord() throws Exception {
-        URL url = new URL("http://localhost:10101/randomword");
+//        URL url = new URL("http://localhost:10101/randomword");
+        URL url = new URL("http://prog-tools.ru:10101/randomword");
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         int status = httpURLConnection.getResponseCode();
         String s;

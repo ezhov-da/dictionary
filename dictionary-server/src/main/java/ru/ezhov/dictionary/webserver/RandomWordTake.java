@@ -27,6 +27,8 @@ public class RandomWordTake implements Take {
     }
 
     public Response act(Request request) throws IOException {
+        System.out.println(this.hashCode());
+
         String host = new RqSocket(request).getRemoteAddress().getHostAddress();
         System.out.println("connection host: " + host);
 
