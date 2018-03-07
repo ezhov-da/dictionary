@@ -1,0 +1,65 @@
+able - в состоянии
+absent - отсутствие
+accomblish - выполнять
+against - против
+allowing - позволяющий
+among - среди
+amount - количество
+assess - оценить
+assume - предлагать
+avoid - избегать
+both - оба
+bound - связанный
+brief - краткое
+capable - способный
+capture - захватить
+certain - определенных
+complex - сложный
+computation - вычисление
+conjunction - соединение
+conversely - наоборот
+directly - непосредственно
+during - в течение
+encaunters - столкновение
+enhance - усилить
+ensure - гарантировать
+entire - все
+exceeded - превышено
+excplicetly - явно
+favor - благоприятствовать
+generally - в общем
+gentle - нежный
+however - однако
+immediately - немедленно
+implicit - неявный
+improved - улучшен
+inbound - входящий
+increase - увеличение
+instance - пример
+interact - взаимодействовать
+interrupt - прерывание
+involving - с привлечением
+leverage - использовать
+manually - вручную
+meaning - имея в виду
+mention - упомянуть
+necessary - необходимо
+offer - предлагать
+often - довольно часто
+overview - обзор
+pick - выбирать
+populate - заполнять
+precision - точность
+purpose - цель
+rather - скорее
+reassigned - переназначен
+recently - в последнее время
+similar - аналогичный
+since - поскольку
+sole - единственный
+successor - приемник
+suggest - предлагать
+unit - блок
+various - различный
+verbose - подробный
+within - в
