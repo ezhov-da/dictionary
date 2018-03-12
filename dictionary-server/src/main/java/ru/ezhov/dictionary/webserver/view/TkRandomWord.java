@@ -1,29 +1,23 @@
-package ru.ezhov.dictionary.webserver;
+package ru.ezhov.dictionary.webserver.view;
 
 import org.takes.Request;
 import org.takes.Response;
 import org.takes.Take;
 import org.takes.rq.RqSocket;
 import org.takes.rs.RsText;
-import ru.ezhov.dictionary.webserver.dao.WordDao;
+import ru.ezhov.dictionary.webserver.dao.WordGeneratorDao;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.logging.Logger;
 
-public class RandomWordTake implements Take {
-    private static final Logger LOG = Logger.getLogger(RandomWordTake.class.getName());
+public class TkRandomWord implements Take {
+    private static final Logger LOG = Logger.getLogger(TkRandomWord.class.getName());
 
-    private WordDao wordDao;
+    private WordGeneratorDao wordGeneratorDao;
 
-    public RandomWordTake(WordDao wordDao) {
-        this.wordDao = wordDao;
-        try {
-            wordDao.load();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-1000);
-        }
+    public TkRandomWord(WordGeneratorDao wordGeneratorDao) {
+        this.wordGeneratorDao = wordGeneratorDao;
     }
 
     public Response act(Request request) throws IOException {
@@ -33,7 +27,7 @@ public class RandomWordTake implements Take {
         System.out.println("connection host: " + host);
 
         try {
-            String text = wordDao.getRandomWord();
+            String text = wordGeneratorDao.getRandomWord();
             System.out.println("word: " + text);
 
             return new RsText(text.getBytes(Charset.forName("UTF-8")));

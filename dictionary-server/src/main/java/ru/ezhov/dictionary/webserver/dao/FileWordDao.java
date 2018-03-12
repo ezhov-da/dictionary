@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -20,7 +19,7 @@ public class FileWordDao implements WordDao {
         this.pathToFileWithWord = pathToFileWithWord;
     }
 
-    private int count() {
+    public int count() {
         return words.size();
     }
 
@@ -44,25 +43,20 @@ public class FileWordDao implements WordDao {
         return file.length();
     }
 
-    private void reload() throws Exception {
+    public void reload() throws Exception {
         words.removeAll(words);
         load();
     }
 
-    public String getRandomWord() throws Exception {
-        try {
-            if (isChange()) {
-                reload();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-500);
-        }
-
-        return words.get(new Random().nextInt(count()));
+    public boolean isChange() throws Exception {
+        return getFileSize() != fileSize;
     }
 
-    private boolean isChange() throws Exception {
-        return getFileSize() != fileSize;
+    public List<String> getAll() {
+        return words;
+    }
+
+    public String getWord(int i) {
+        return words.get(i);
     }
 }
