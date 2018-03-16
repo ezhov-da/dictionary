@@ -1,7 +1,18 @@
 package ru.ezhov.dictionary.informer.dao;
 
-public interface WordDao {
-     void load() throws Exception;
+import java.util.List;
 
-    String getRandomWord() throws Exception;
+public interface WordDao {
+
+    int count();
+
+    boolean isChange() throws Exception;
+
+    void load() throws Exception;
+
+    void reload() throws Exception;
+
+    List<String> getAll();
+
+    String getWord(int i);
 }

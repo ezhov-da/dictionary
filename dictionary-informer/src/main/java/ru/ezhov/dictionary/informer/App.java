@@ -1,6 +1,11 @@
 package ru.ezhov.dictionary.informer;
 
-import ru.ezhov.dictionary.informer.dao.HttpWordDao;
+import ru.ezhov.dictionary.informer.dao.HttpWordGeneratorDao;
+import ru.ezhov.dictionary.informer.util.Pid;
+import ru.ezhov.dictionary.informer.util.SaveException;
+import ru.ezhov.dictionary.informer.util.SavePidToFile;
+import ru.ezhov.dictionary.informer.view.window.WindowDispatcher;
+import ru.ezhov.dictionary.informer.view.window.WindowsGeneratorImpl;
 
 import javax.swing.*;
 import java.util.logging.Logger;
@@ -10,8 +15,8 @@ public class App {
 
     public static void main(String[] args) {
         App app = new App();
-        app.setLaF();
         app.savePid();
+        app.setLaF();
         app.start();
     }
 
@@ -24,7 +29,10 @@ public class App {
     }
 
     private void savePid() {
-        if (!PidHolder.savePid()) {
+        try {
+            new SavePidToFile(new Pid(), "pid.txt").save();
+        } catch (SaveException e) {
+            e.printStackTrace();
             System.exit(-1);
         }
     }
@@ -34,7 +42,7 @@ public class App {
                 new Thread(
                         new WindowDispatcher(
                                 new WindowsGeneratorImpl(
-                                        new HttpWordDao()
+                                        new HttpWordGeneratorDao("http://prog-tools.ru:10101/randomword")
                                 )
                         )
                 );

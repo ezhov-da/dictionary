@@ -20,7 +20,7 @@ public class FileWordDao implements WordDao {
         this.pathToFileWithWord = pathToFileWithWord;
     }
 
-    private int count() {
+    public int count() {
         return words.size();
     }
 
@@ -39,14 +39,24 @@ public class FileWordDao implements WordDao {
         }
     }
 
-    private long getFileSize() {
+    public long getFileSize() {
         File file = new File(pathToFileWithWord);
         return file.length();
     }
 
-    private void reload() throws Exception {
+    public void reload() throws Exception {
         words.removeAll(words);
         load();
+    }
+
+    @Override
+    public List<String> getAll() {
+        return words;
+    }
+
+    @Override
+    public String getWord(int i) {
+        return words.get(i);
     }
 
     public String getRandomWord() throws Exception {
@@ -62,7 +72,7 @@ public class FileWordDao implements WordDao {
         return words.get(new Random().nextInt(count()));
     }
 
-    private boolean isChange() throws Exception {
+    public boolean isChange() throws Exception {
         return getFileSize() != fileSize;
     }
 }

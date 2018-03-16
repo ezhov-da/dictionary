@@ -6,18 +6,19 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class HttpWordDao implements WordDao {
-    private static final Logger LOG = Logger.getLogger(HttpWordDao.class.getName());
+public class HttpWordGeneratorDao implements WordGeneratorDao {
+    private static final Logger LOG = Logger.getLogger(HttpWordGeneratorDao.class.getName());
 
-    @Override
-    public void load() throws Exception {
-        // not use
+
+    private String urlWordHolder;
+
+    public HttpWordGeneratorDao(String urlWordHolder) {
+        this.urlWordHolder = urlWordHolder;
     }
 
     @Override
     public String getRandomWord() throws Exception {
-//        URL url = new URL("http://localhost:10101/randomword");
-        URL url = new URL("http://prog-tools.ru:10101/randomword");
+        URL url = new URL(urlWordHolder);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         int status = httpURLConnection.getResponseCode();
         String s;

@@ -1,10 +1,9 @@
-package ru.ezhov.dictionary.informer;
+package ru.ezhov.dictionary.informer.view.window;
 
-import ru.ezhov.dictionary.informer.dao.WordDao;
+import ru.ezhov.dictionary.informer.dao.WordGeneratorDao;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
@@ -14,10 +13,10 @@ public class WindowsGeneratorImpl implements WindowsGenerator {
 
     private WordWindow window = null;
 
-    private WordDao wordDao;
+    private WordGeneratorDao wordGeneratorDao;
 
-    public WindowsGeneratorImpl(WordDao wordDao) {
-        this.wordDao = wordDao;
+    public WindowsGeneratorImpl(WordGeneratorDao wordGeneratorDao) {
+        this.wordGeneratorDao = wordGeneratorDao;
     }
 
     @Override
@@ -31,13 +30,6 @@ public class WindowsGeneratorImpl implements WindowsGenerator {
     }
 
     private WordWindow initWindow() {
-        try {
-            wordDao.load();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(-10);
-        }
-
         return getNewWindows();
     }
 
@@ -68,7 +60,7 @@ public class WindowsGeneratorImpl implements WindowsGenerator {
 
             labelText.setHorizontalAlignment(SwingConstants.CENTER);
             try {
-                labelText.setText(wordDao.getRandomWord());
+                labelText.setText(wordGeneratorDao.getRandomWord());
             } catch (Exception e) {
                 e.printStackTrace();
                 labelText.setText("NO GET WORD :(");
@@ -89,7 +81,6 @@ public class WindowsGeneratorImpl implements WindowsGenerator {
         @Override
         public void run() {
             window = getNewWindows();
-            System.out.println(new Date());
         }
     }
 }

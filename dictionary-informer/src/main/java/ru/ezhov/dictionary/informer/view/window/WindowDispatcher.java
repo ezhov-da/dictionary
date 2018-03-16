@@ -1,4 +1,4 @@
-package ru.ezhov.dictionary.informer;
+package ru.ezhov.dictionary.informer.view.window;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,6 +6,9 @@ import java.util.logging.Logger;
 
 public class WindowDispatcher implements Runnable {
     private static final Logger LOG = Logger.getLogger(WindowDispatcher.class.getName());
+
+    private static final int PLUS_X = 10;
+    private static final int PLUS_Y = 10;
 
     private WindowsGenerator windowsGenerator;
 
@@ -16,8 +19,8 @@ public class WindowDispatcher implements Runnable {
     @Override
     public void run() {
         Point lastPoint = null;
-
         JWindow windowLast = windowsGenerator.generate();
+
         windowLast.pack();
         windowLast.setVisible(true);
 
@@ -32,16 +35,15 @@ public class WindowDispatcher implements Runnable {
                 Point point = MouseInfo.getPointerInfo().getLocation();
 
                 JWindow window = windowsGenerator.generate();
-                //Важно! Генератор окон сам отвечает за то,
-                //когда необходимо менять окно и необходимо ли вообще
-                //Здесь же мы просто сравниваем изменение и отображаем новое коно,
-                // а старое убиваем
-                if (windowLast != null && windowLast != window) {
+
+                //Здесь мы просто сравниваем изменение окна
+                // и отображаем новое коно, а старое убиваем
+                if (windowIsChange(windowLast, window)) {
                     windowLast.setVisible(false);
                     windowLast.dispose();
 
                     windowLast = window;
-                    windowLast.setLocation(point.x + 10, point.y + 10);
+                    setLocation(windowLast, point);
                     windowLast.pack();
                     windowLast.setVisible(true);
                 }
@@ -53,7 +55,7 @@ public class WindowDispatcher implements Runnable {
                 }
 
                 if (!point.equals(lastPoint)) {
-                    windowLast.setLocation(point.x + 10, point.y + 10);
+                    setLocation(windowLast, point);
                     lastPoint = point;
                 }
             } catch (NullPointerException e) {
@@ -63,4 +65,13 @@ public class WindowDispatcher implements Runnable {
             }
         }
     }
+
+    private boolean windowIsChange(JWindow windowLast, JWindow windowCurrent) {
+        return windowLast != null && windowLast != windowCurrent;
+    }
+
+    private void setLocation(JWindow window, Point point) {
+        window.setLocation(point.x + PLUS_X, point.y + PLUS_Y);
+    }
+
 }
