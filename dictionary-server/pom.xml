@@ -80,6 +80,31 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!--готовим данные для деплоя-->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <configuration>
+                            <tasks>
+                                <mkdir dir="${project.basedir}/for-deploy"/>
+                                <copyfile src="${project.build.directory}/${artifactId}.${packaging}"
+                                          dest="${project.basedir}/for-deploy/${artifactId}.${packaging}"/>
+                                <copyfile src="${project.basedir}/run-server.sh"
+                                          dest="${project.basedir}/for-deploy/run-server.sh"/>
+                                <copyfile src="${project.basedir}/words.txt"
+                                          dest="${project.basedir}/for-deploy/words.txt"/>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

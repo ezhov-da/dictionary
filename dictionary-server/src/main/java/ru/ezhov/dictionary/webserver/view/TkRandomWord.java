@@ -30,7 +30,7 @@ public class TkRandomWord implements Take {
             String text = wordGeneratorDao.getRandomWord();
             System.out.println("word: " + text);
 
-            return new RsText(text.getBytes(Charset.forName("UTF-8")));
+            return new RsText(String.format("{'text':'%s'}", text.getBytes(Charset.forName("UTF-8"))));
         } catch (Exception e) {
             e.printStackTrace();
             return new RsText(e.getMessage());
