@@ -91,6 +91,9 @@
                         <configuration>
                             <tasks>
                                 <mkdir dir="${project.basedir}/for-deploy"/>
+                                <delete includeemptydirs="true">
+                                    <fileset dir="${project.basedir}/for-deploy" includes="**/*"/>
+                                </delete>
                                 <copyfile src="${project.build.directory}/${artifactId}.${packaging}"
                                           dest="${project.basedir}/for-deploy/${artifactId}.${packaging}"/>
                                 <copyfile src="${project.basedir}/run-server.sh"
