@@ -1,0 +1,17 @@
+[Unit]
+Description=dictionary-server
+After=network.target
+After=syslog.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/bin/sh /usr/dictionary-server/run-server.sh
+WorkingDirectory=/usr/dictionary-server
+Restart=always
+RestartSec=10
+TimeoutSec=60
