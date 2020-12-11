@@ -1,10 +1,15 @@
 # dictionary
 
-Данное приложение представляет из себя словарь для непринужденного заучивания слов.
+This app is a dictionary for easy vocabulary learning.
 
-При запуске **dictionary-informer** около мышки появляется небольшое окошко, которое раз в 30 секуд показывает английское слово и перевод.
-Таким образом при работе за компьютером, вы сможете пополнить свой словарный запас.
+When you start the **dictionary-informant** of the mouse, a small window appears, which shows the English word and the translation every 30 seconds.
+Thus, when working at a computer, you can replenish your vocabulary.
 
-На данный момент приложения пока в разработке.
+At the moment, applications are still in development.
 
-Инструкция будет пополняться по мере развития приложения.
+The instructions will be updated as the application develops.
+
+Run
+```
+javaw -Xms10m -Xmx15m -jar dictionary-informer-0.0.1-jar-with-dependencies.jar -s https://raw.githubusercontent.com/ezhov-da/dictionary/master/dictionary-informer/words.txt
+```

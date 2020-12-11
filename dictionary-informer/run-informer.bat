@@ -8,4 +8,4 @@ cd /d %~dp0
 
 echo WORKING_DIRECTORY=%~dp0
 
-start "run" "%JAVA_HOME%\bin\javaw" -Xms10m -Xmx15m -cp %~dp0\target\dictionary-informer.jar "ru.ezhov.dictionary.informer.App"
+start "run" "%JAVA_HOME%\bin\javaw" -Xms10m -Xmx15m -cp %~dp0\target\dictionary-informer.jar "ru.ezhov.dictionary.App"
